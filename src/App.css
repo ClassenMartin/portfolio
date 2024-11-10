@@ -1,0 +1,645 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding:0;
+  letter-spacing: 2px;
+  font-weight: bold;
+  
+}
+
+.App {
+  background-color: white;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+/* translation top left corner */
+.buttonBox {
+  display: flex;
+  position: fixed;
+  justify-content: space-around;
+  column-gap: 3%;
+  margin-top: 2rem;
+  width: 50%;
+  visibility: hidden;
+  animation: popUpLanguageButton 0s 3s forwards;
+}
+
+@keyframes popUpLanguageButton {
+ to {visibility: visible;}
+}
+
+.languageButton,.languageButtonActive {
+  background-color: white;
+  border-radius: 4px;
+  padding: 1rem;
+  border: 1px solid black;
+}
+
+.languageButtonActive {
+  background-color: rgb(217, 214, 215);
+}
+
+.languageButton:hover,.languageButtonActive:hover {
+  background-color: rgb(217, 214, 215);
+}
+
+
+/* left side of the welcome screen */
+.mainLeft {
+background-color: white;
+width: 50%;
+margin: 2rem;
+max-height: 100vh;
+padding: 2rem;
+display: flex;
+justify-content: center;
+align-items: center;
+opacity: 1;
+}
+
+.fotobox {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 80%;
+  height:80%;
+  background-image: url(/Users/martinclassen/Desktop/littleProjects/portfolio/public/pictures/me.jpg);
+background-position: start;
+background-repeat: no-repeat; 
+background-size: cover;
+border-radius: 5px;
+}
+
+.fotobox > div {
+  margin-bottom: 2rem;
+  background-color: rgba(217, 214, 215, 0.5); 
+   padding: 1rem;
+  border-radius: 3px;
+  /* opacity: 0.5; */
+}
+
+
+
+@keyframes slideInWelcome {
+  from {
+    transform: translateX(-100%); /* Start off-screen to the left */
+    opacity: 0; /* Start transparent */
+  }
+  to {
+    transform: translateX(0); /* End at normal position */
+    opacity: 1; /* Fully visible */
+  }
+}
+
+.mainLeft .fotobox > div {
+  animation: slideInWelcome 3s ease-out forwards; /* Adjust duration and easing as desired */
+}
+
+@keyframes slideDownPicture {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  } to {
+    transform: translateY(0);
+    opacity:1;
+  }
+}
+
+.mainLeft .fotobox {
+  animation: slideDownPicture 1s ease-out forwards;
+}
+
+@keyframes fadeInMenu {
+  0% {
+    transform: translateZ(-100%);
+    opacity: 0;
+  }
+  20% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+  40% {
+    transform: translateZ(0);
+    opacity: 0;
+  }
+  60% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateZ(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
+
+
+/* right half of the screen */
+.mainRight {
+width: 50%;
+margin: 2rem;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+gap:2px;
+position: relative;
+}
+
+.littleBox {
+  position: relative; 
+  border: solid black 1px;
+  border-radius: 3px;
+  height: calc(33.333% - 2px);
+  flex-basis: calc(33.333% - 2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+  overflow: hidden; 
+}
+
+.littleBox:hover {  
+  background-color: rgb(217, 214, 215);
+  font-weight: bolder;
+  transform: scale(1.05);
+  color: transparent; 
+}
+
+.littleBox::after {
+  content: attr(data-hover); 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  color: black;
+  font-weight: bold;
+  transition: opacity 0.3s ease;
+  pointer-events: none; 
+}
+
+.littleBox:hover::after {
+  opacity: 1;
+  z-index: 1;
+}
+
+.mainRight .littleBox {
+  animation: fadeInMenu 4s ease-out forwards;
+}
+
+.littleBoxPicture {
+  position: relative;
+  border-radius: 3px;
+  height: calc(33.333% - 2px);
+  flex-basis: calc(33.333% - 2px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: white;
+  background-size: cover;
+  background-position: center;
+  transition: 
+  opacity 0.5s ease-in-out, 
+  background-color 3s ease; /* Adjust duration for slower effect */
+  opacity: 1;/* Smooth transition */
+  filter: saturate(0.9);
+}
+
+
+
+.color-transition {
+  background-color:  rgb(217, 214, 215);
+}
+
+.littleBoxPicture:hover {
+  opacity: 1;
+  border: solid black 1px;
+}
+
+.picture1:hover {
+  background-image: url(/Users/martinclassen/Desktop/littleProjects/portfolio/public/pictures/flowerPurple.jpg)
+}
+
+.picture2:hover {
+background-image: url(/Users/martinclassen/Desktop/littleProjects/portfolio/public/pictures/flowerSnail.jpg);
+}
+
+.picture3:hover {
+  background-image: url(/Users/martinclassen/Desktop/littleProjects/portfolio/public/pictures/flowerWhite.jpg) ;
+}
+
+.picture4:hover {
+  background-image: url(/Users/martinclassen/Desktop/littleProjects/portfolio/public/pictures/flowerSkinny.jpg);
+}
+
+
+
+
+
+/* styleing for the general modal */
+.modal {
+  position: fixed;
+  min-width: 95vw;
+  min-height: 95vh;
+  max-height: 95vh;
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  overflow-y: auto;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+ flex-grow: 1;
+ background-color: white;
+ overflow: hidden;
+ padding: 1rem;
+ padding: 0 10%;
+ overflow-y: hidden;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: baseline;
+  column-gap: 1rem;
+  padding:1rem;
+  } 
+
+.modalMainContent {
+flex-grow: 1;
+height: 100%;
+/* width: 80%; */
+display: flex;
+flex-direction: column;
+overflow-y: auto;
+}
+
+/* AboutMe Modal */
+.aboutContent {
+flex-grow: 1;
+display: flex;
+flex-wrap: wrap;
+/* row-gap: 1rem; */
+/* border: solid purple 3px; */
+}
+
+.aboutContent > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: solid red 1px; */
+  width: 100%;
+  text-align: center;
+  padding: 0 5rem
+}
+
+/* Projects Modal */
+
+.projectsMapped {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.singleProject {
+  border: solid black 1px;
+ height: 200px;
+  width: calc(30% - 4rem); 
+  margin: 2rem; 
+  border-radius: 4px;
+}
+
+.singleProjectHover {
+border: solid black 2px;
+height: calc(45% - 4rem); 
+height: 200px;
+width: calc(30% - 4rem); 
+margin: 2rem; 
+border-radius: 4px;
+background-color: rgb(217, 214, 215);
+}
+
+.singleProjectContent {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  row-gap: 1rem;
+  background-size: cover;
+}
+
+.modalCloseButton {
+  display: flex;
+  justify-content: flex-end;
+height: 50px;
+margin: 5px 5px 0 0;
+}
+
+.modalCloseButton > button {
+height: 2rem;
+font-weight: 900;
+width: 30px;
+height: 30px;
+}
+
+
+/* single project modal */
+
+.projects {
+  background-color: white;
+  /* border: solid red 5px; */
+  position: fixed;
+  min-width: 95vw;
+  min-height: 95vh;
+  max-height: 95vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: center;
+  overflow-y: auto;
+}
+
+.projectCloseButton {
+/* background-color: green; */
+width: 100%;
+display: flex;
+justify-content: flex-end;
+}
+
+.projectCloseButton > button {
+  height: 2rem;
+font-weight: 900;
+width: 30px;
+height: 30px;
+margin: 0.5rem;
+}
+
+.projectHeader {
+  /* background-color: purple; */
+  width: 100%;
+  padding: 0.5rem 3rem;
+}
+
+.projectLinksContainer {
+  /* background-color: blue; */
+  width: 100%;
+ 
+
+}
+
+.projectLinks {
+  /* background-color: yellow; */
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem;
+}
+
+.icons {
+  height: 300px;
+}
+
+.projectScrollContent {
+  /* make this scrollable */
+  /* background-color: pink; */
+  width: 100%;
+  padding:0.5rem 0;
+  max-height: calc(95vh);
+  overflow-y: auto;
+  border-top: black 1px solid;
+}
+
+.projectInfo {
+  line-height: 2rem;
+  padding: 0.5rem;
+  background-color: rgb(217, 214, 215); 
+  text-align: center;
+  margin: 0 1rem;
+}
+
+.projectInfo > div {
+  display: flex;
+  width: 100%;
+}
+
+/* .projectInfo > div > p {
+  color: red;
+  width:100%;
+
+} */
+
+.projectPictureContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 1rem; 
+  padding: 1rem;
+}
+
+.projectPic {
+  width: 100%;
+  min-height: 500px;
+  height: auto;
+  position: relative;
+  margin-bottom: 1rem; 
+  border: solid black 1px;
+  cursor: pointer;
+}
+
+.projectPic img {
+  width: 100%;
+}
+
+.imageTitle {
+  position:absolute;
+  background-color: white;
+  border: solid black 1px;
+  border-radius: 4px;
+  /* opacity: 0.7; */
+  top: 50%;
+  left:50%;
+  padding: 1rem;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Skills Modal */
+
+.skillContent {
+  flex-grow: 1;
+display: flex;
+flex-wrap: wrap;
+/* row-gap: 1rem; */
+/* border: solid purple 3px; */
+}
+
+.skillContent > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: solid red 1px; */
+  width: 100%;
+  text-align: center;
+  padding: 0 5rem
+}
+
+.skillContentSplit {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  /* background-color: pink; */
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  column-gap: 10px;
+}
+
+ul > li {
+  font-weight: 900;
+  color: black;
+  width: 15rem;
+  text-align: center;
+  padding: 1rem 0;  
+  background-color: rgb(217, 214, 215);
+  border-radius: 5px;
+}
+
+/* Curriculum Modal */
+
+.curriculumContent {
+  display: flex;
+  flex-grow: 1;
+}
+
+iframe {
+width: 100%; /* Full width */
+/* height: 100%;  */
+border: none; /* No border */
+overflow: hidden; /* Hide scrollbars */
+display: block; /* Remove extra space below iframe */
+}
+
+
+
+/* Contact Modal */
+.contactForm {
+border: solid black 1px;
+display: flex;
+flex-direction: column;
+padding: 1rem;
+align-items: center;
+}
+
+.contactForm > div {
+  margin-bottom: 2rem;
+}
+
+.contactForm > button {
+  width: 40vw;
+  height: 50px;
+}
+
+.formBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 60vh;
+  margin: 0 auto;
+}
+
+.formBox > form {
+width: 100%;
+border: none;
+}
+
+.formBoxHeader {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 2rem;
+  align-items: center;
+  height:15vh;
+}
+
+.labelInput {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
+
+.formBoxMessage {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height:60%;
+}
+
+.formBoxMessage > div {
+  width: 100%;
+}
+
+textarea {
+  width:100%;
+  height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* fonts */
+
+
+/* fonts in modals */
+
