@@ -246,7 +246,7 @@ const projectsEsp = [
     github: "",
     imageOne: "/projectPics/clippedIn/clippedInOne.png",
     imageOneDescription: "vista general en un mapa para colaboradores con una función de filtro para encontrar ciertas habilidades",
-    imageOneAlt: "mapa de vista general colaboradores",
+    imageOneAlt: "mapa de vista general colaboradores por todo el mundo",
   
     imageTwo: "/projectPics/clippedIn/clippedInTwo.png",
     imageTwoDescription: "mercado laboral donde se pueden ver ofertas de trabajo disponibles",
